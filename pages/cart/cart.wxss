@@ -1,0 +1,6 @@
+/* pages/cart/cart.wxss */
+
+.bottom-button {
+  width: 160px;
+  height: 40px;
+}

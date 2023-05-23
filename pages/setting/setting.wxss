@@ -1,0 +1,13 @@
+/* pages/setting/setting.wxss */
+.text {
+  display: flex;
+  margin: 10px 10px;
+  padding: 1rem;
+  border: 2px solid #333;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px #ccc;
+}
+
+.van-image {
+  margin-right: 1rem;
+}

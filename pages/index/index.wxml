@@ -1,0 +1,54 @@
+<van-row>
+  <van-col span="6">易筑家</van-col>
+  <van-col span="18">
+    <van-search value="{{value}}" placeholder="请输入搜索关键词" />
+  </van-col>
+</van-row>
+<van-notice-bar color="#1989fa" speed="100" background="#ecf9ff"
+  left-icon="volume-o" scrollable
+  text="商城新开张，优惠多多，点我看详情！！！"
+/>
+<swiper autoplay circular interval="3000" duration="500">
+  <view wx:for="{{arrImg}}" wx:for-item="imgOne" wx:key="imgOne">
+    <swiper-item>
+      <image style="width: 100%; height: 100%;" src="{{imgOne}}"></image>
+    </swiper-item>
+  </view>
+</swiper>
+
+<van-grid column-num="5">
+  <van-grid-item icon="/icon/sofa.png" text="沙发" bind:click="bindTag" data-name="沙发"/>
+  <van-grid-item icon="/icon/bed.png" text="床" bind:click="bindTag" data-name="床"/>
+  <van-grid-item icon="/icon/nightTable.png" text="床头柜" bind:click="bindTag" data-name="床头柜"/>
+  <van-grid-item icon="/icon/coatHanger.png" text="衣架" bind:click="bindTag" data-name="衣架"/>
+  <van-grid-item icon="/icon/light.png" text="灯" bind:click="bindTag" data-name="灯"/>
+  <van-grid-item icon="/icon/bookcase.png" text="书架" bind:click="bindTag" data-name="书架"/>
+  <van-grid-item icon="/icon/desk.png" text="桌子" bind:click="bindTag" data-name="桌子"/>
+  <van-grid-item icon="/icon/chair.png" text="椅子" bind:click="bindTag" data-name="椅子"/>
+  <van-grid-item icon="/icon/bathtub.png" text="浴缸" bind:click="bindTag" data-name="浴缸"/>
+  <van-grid-item icon="/icon/closestool.png" text="马桶" bind:click="bindTag" data-name="马桶"/>
+</van-grid>
+
+<van-divider contentPosition="center" textColor="#FF4F00" borderColor="#FF4F00" fontSize="22">
+<van-icon style="padding: 0.2em;" name="/icon/clock.png"/>
+<text>限时秒杀!!!还剩</text>
+<van-count-down style="padding:0.2em; color: red;" millisecond  time="{{time}}"format="HH:mm:ss:SSS"/>
+</van-divider>
+
+<view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
+  <van-card num="{{Data.furnitureQuantity}}" 
+  tag="标签" 
+  price="{{Data.furniturePrice}}"
+  origin-price="99999"
+  desc="{{Data.detailedInformation}}"
+  title="{{Data.furnitureName}}" 
+  thumb="{{Data.furnitureUrl}}"
+  bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
+  >
+  <view slot="footer">
+      <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
+      立即购买
+      </van-button>
+  </view>
+  </van-card>
+</view>

@@ -1,0 +1,20 @@
+/* pages/detail/detail.wxss */
+.title {
+  font-size: 42rpx;
+}
+
+.price {
+  font-size: 42rpx;
+  color: rgb(220,88,13);
+}
+
+.van-cell {
+  height: 200rpx;
+  color: black;
+  font-weight: bold;
+  font-size: 999px;
+}
+
+.cell-value {
+  color: rgb(240, 10, 10) !important;
+}

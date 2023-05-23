@@ -1,0 +1,19 @@
+/**index.wxss**/
+
+/* 设置文字样式 */
+.van-col:first-child {
+  font-size: 25px; /* 设置字体大小 */
+  line-height: 50px; /* 设置行高 */
+  text-align: center;
+  font-style:italic;
+  color:#FF4F00;
+}
+
+/* 调整文字位置 */
+.van-search {
+  padding-left: 0; /* 清除搜索框左边距 */
+}
+
+.my-countdown::shadow-root .van-count-down__time {
+  color: red;
+}

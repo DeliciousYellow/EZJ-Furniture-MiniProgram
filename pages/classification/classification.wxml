@@ -1,0 +1,38 @@
+<!--pages/classification/classification.wxml-->
+<view class="wrapper">
+  <view class="search-bar"><van-search value="{{ value }}" placeholder="请输入搜索关键词" /></view>
+  <view class="flexbox">
+    <!--左侧标签-->
+  <view class="left">
+    <van-sidebar active-key="{{activeKey}}" bind:change="onChange">
+      <van-sidebar-item title="全部" />
+      <view wx:for="{{arrTag}}" wx:for-item="Tag" wx:key="tagDetail">
+        <van-sidebar-item title = "{{Tag.tagDetail}}"/>
+      </view>
+    </van-sidebar>
+  </view>
+  <!--右侧-->
+  <view class="right">
+    <view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
+        <van-card num="{{Data.furnitureQuantity}}" 
+        tag="标签" 
+        price="{{Data.furniturePrice}}"
+        origin-price="{{Data.originPrice}}"
+        desc="{{Data.detailedInformation}}"
+        title="{{Data.furnitureName}}" 
+        thumb="{{Data.furnitureUrl}}"
+        bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
+        >
+        <view slot="footer">
+          <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
+            加入购物车
+            </van-button>
+            <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
+            立即购买
+            </van-button>
+        </view>
+        </van-card>
+    </view>
+  </view>
+  </view>
+</view>

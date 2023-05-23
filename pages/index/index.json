@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

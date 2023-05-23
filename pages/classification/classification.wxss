@@ -1,0 +1,23 @@
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  height: 1185rpx;
+}
+
+.left {
+  width: 180rpx;
+  height: 1185rpx;
+  overflow-y: auto;
+}
+
+.right {
+  flex: 1;
+  height: 1185rpx;
+  overflow-y: auto;
+}

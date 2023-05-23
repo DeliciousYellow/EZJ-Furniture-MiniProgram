@@ -1,0 +1,8 @@
+<view style="margin: 6em;">
+  <van-empty
+  class="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="购物车空空如也~">
+  <van-button round type="danger" class="bottom-button">去逛逛</van-button>
+  </van-empty>
+</view>
