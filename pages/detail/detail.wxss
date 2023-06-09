@@ -1,18 +1,27 @@
 /* pages/detail/detail.wxss */
-.title {
+@import '../../miniprogram_npm/@vant/weapp/common/index.wxss';
+/* .title {
   font-size: 42rpx;
-}
+} */
+
+/* #big-box{
+  background-color: rgb(222,225,230);
+} */
 
 .price {
   font-size: 42rpx;
   color: rgb(220,88,13);
 }
 
+/* .cell-box {
+  padding: 10rpx;
+} */
+
 .van-cell {
-  height: 200rpx;
   color: black;
   font-weight: bold;
-  font-size: 999px;
+  font-size: 99rpx;
+  margin:15rpx 0rpx;
 }
 
 .cell-value {

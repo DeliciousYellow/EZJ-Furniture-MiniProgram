@@ -6,15 +6,15 @@
   <view class="left">
     <van-sidebar active-key="{{activeKey}}" bind:change="onChange">
       <van-sidebar-item title="全部" />
-      <view wx:for="{{arrTag}}" wx:for-item="Tag" wx:key="tagDetail">
-        <van-sidebar-item title = "{{Tag.tagDetail}}"/>
+      <view wx:for="{{arrTag}}" wx:for-item="Tag" wx:key="tagName">
+        <van-sidebar-item title = "{{Tag.tagName}}"/>
       </view>
     </van-sidebar>
   </view>
   <!--右侧-->
   <view class="right">
     <view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
-        <van-card num="{{Data.furnitureQuantity}}" 
+        <van-card num="{{Data.furnitureQuantity}}"
         tag="标签" 
         price="{{Data.furniturePrice}}"
         origin-price="{{Data.originPrice}}"

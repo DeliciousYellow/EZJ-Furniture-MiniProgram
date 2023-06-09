@@ -1,28 +1,52 @@
 <!--pages/detail/detail.wxml-->
-<swiper autoplay circular interval="3000" duration="500" 
-  style="width: 100%; height: 600rpx;">
-  <view wx:for="{{arrImg}}" wx:for-item="imgOne" wx:key="imgOne">
-    <swiper-item>
-      <van-image fit="contain" width="100%" height="100%" src="{{imgOne}}" />
-    </swiper-item>
+<view>
+  <swiper autoplay circular interval="3000" duration="500" 
+    style="width: 100%; height: 600rpx;">
+    <view wx:for="{{arrImg}}" wx:for-item="imgOne" wx:key="imgOne">
+      <swiper-item>
+        <van-image fit="contain" width="100%" height="100%" src="{{imgOne}}" />
+      </swiper-item>
+    </view>
+  </swiper>
+  <van-divider/>
+  <van-row class="detail">
+    <van-col span="6" class="price">￥{{furnitureData.furniturePrice}}</van-col>
+    <van-col offset="10" span="8" class="price">月销量:{{furnitureData.furnitureQuantity}}</van-col>
+    <van-col span="24" >
+      <view class="van-multi-ellipsis--l3">
+        <van-tag size="medium" type="danger">易卖</van-tag>
+        {{furnitureData.detailedInformation}}
+        </view>
+    </van-col>
+  </van-row>
+  <van-divider/>
+  <view class="cell-box" id="big-box">
+    <van-cell icon="logistics" center 
+    title="同城发货" value="填写收货地址" label="配送至:" 
+    is-link link-type="navigateTo"
+    url="/pages/address/address"/>
+    <van-cell icon="like-o" title="服务" is-link value="7天无理由退换..." bind:click="showPopup"/>
+    <van-popup
+      closeable
+      show="{{ show }}" 
+      position="bottom"
+      custom-style="height: 50%;"
+      bind:close="onClose">
+        <van-cell title="假一赔四" value="" label="正品保障，假一赔四"/>
+        <van-cell title="极速退款" value="" label="满足相应条件时，诚信用户在退货寄出后，享受极速退款到账"/>
+        <van-cell title="7天无理由退换" value="" label="满足相应条件时，消费者可申请“7天无理由退换货”"/>
+        <van-button color="#FF4F00" block round style="margin: 100rpx;" bindtap="onClose">我知道了</van-button>
+    </van-popup>
+    <van-cell icon="chat-o" title="商品评价" is-link value=""/>
   </view>
-</swiper>
-<van-divider />
-<van-row class="detail">
-  <van-col span="24" class="price">￥288</van-col>
-  <van-col span="24" class="title"><van-tag size="medium" type="danger">易卖</van-tag>{{furnitureData.detailedInformation}}</van-col>
-</van-row>
-<!-- <van-cell size="large" title="￥288"/>
-<van-cell class="title" value-class="cell-value" icon="fire"
-size="large" title="这是一段最多显示两行的文字，后面的内容会省略。这是一段最多显示两行的文字"/> -->
-
-<van-goods-action>
-  <van-goods-action-icon icon="chat-o" text="客服" bind:click="onClickIcon" />
-  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickIcon" />
-  <van-goods-action-button
-    text="加入购物车"
-    type="warning"
-    bind:click="onClickButton"
-  />
-  <van-goods-action-button text="立即购买" bind:click="onClickButton" />
-</van-goods-action>
+  <van-goods-action>
+    <van-goods-action-icon icon="service-o" text="客服" bind:click="onClickIcon" />
+    <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickIcon" />
+    <van-goods-action-button
+      text="加入购物车"
+      type="warning"
+      bind:click="onClickButton"
+    />
+    <van-goods-action-button text="立即购买" bind:click="onClickButton" />
+  </van-goods-action>
+</view>

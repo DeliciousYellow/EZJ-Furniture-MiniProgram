@@ -5,30 +5,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    arrImg:
-    [
-      'https://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E5%AE%B6%E5%85%B7%E5%9B%BE%E7%89%87/%E7%9C%9F%E7%9A%AE%E5%BA%8A%E8%BD%BB%E5%A5%A2%E7%8E%B0%E4%BB%A3.jpg',
-      'https://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E5%AE%B6%E5%85%B7%E5%9B%BE%E7%89%87/%E4%B8%8A%E4%B8%8B%E5%8F%8C%E5%B1%82%E5%85%A8%E5%AE%9E%E6%9C%A8%E5%BA%8A.jpg'
-    ],
-    furnitureData:[]
+    arrImg:[],
+    furnitureData:[],
+    show:false,
+    activeNames: ['1'],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log("详情页加载完毕")
-    console.log(options)
+    // console.log("详情页加载完毕")
+    // console.log(options)
     const Id = options.Id
+    //查商品信息
     wx.request({
       url: 'http://127.0.0.1:8080/getfurnitureById/'+Id,
       method: "GET",
       success: res =>{
-        console.log(res)
-        // console.log(res.data)
+        // console.log(res)
         this.setData({furnitureData:res.data.data})
-        // console.log(this.data)
       }
     })
+    //查商品详情图片
+    wx.request({
+      url: 'http://127.0.0.1:8080/GetPictureById/'+Id,
+      method: "GET",
+      success: res =>{
+        const data = res.data.data
+        const arrImg = []
+        for (var i = 0; i < data.length; ++i) {
+          // console.log(data[i].pictureUrl)
+          arrImg.push(data[i].pictureUrl)
+         }
+        this.setData({arrImg:arrImg})
+      }
+    })
+  },
+  showPopup() {
+    this.setData({ show: true });
+  },
+  onClose() {
+    this.setData({ show: false });
+  },
+
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
   },
 })

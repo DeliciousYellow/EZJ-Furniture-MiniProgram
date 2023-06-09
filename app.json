@@ -5,7 +5,8 @@
     "pages/cart/cart",
     "pages/setting/setting",
     "pages/order/order",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/address/address"
   ],
   "window": {
     "backgroundTextStyle": "light",

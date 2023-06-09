@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vant/weapp": "^1.10.14"
+    "@vant/area-data": "^1.4.1",
+    "@vant/weapp": "^1.10.14",
+    "area-data": "^3.1.2"
   }
 }

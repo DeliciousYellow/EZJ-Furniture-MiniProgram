@@ -1,0 +1,86 @@
+<!--pages/address/address.wxml-->
+<van-tabs active="{{ active }}"
+color="#FF4F00" swipeable animated>
+  <van-tab title="选择地址">
+  <view>
+    <van-row>
+      <view style="text-align: center;">
+        <text style="font-size: x-large; color:#FF4F00;">当前地址</text>
+      </view>
+      <van-cell label="{{checkedAddress.address}}"
+      title="{{checkedAddress.consigneeName}} : {{checkedAddress.consigneeNumber}}"/>
+      <view style="text-align: center;">
+        <text style="font-size: x-large; color:#FF4F00;">常用地址</text>
+      </view>
+    </van-row>
+    <radio-group>
+      <van-cell-group wx:for="{{arrAddress}}" wx:for-item="addressItem" wx:key="userId" wx:for-index="index">
+        <van-cell clickable bind:click="radioClick" data-name="{{index}}"
+        title="{{addressItem.consigneeName}} : {{addressItem.consigneeNumber}}"
+        label="{{addressItem.address}}">
+        <radio value="{{ item.consigneeName }}" checked="{{addressItem.checked}}" />
+        </van-cell>
+      </van-cell-group>
+    </radio-group>
+  </view>
+  </van-tab>
+  <van-tab title="新增地址">
+    <view style="text-align: center;">
+      <text style="font-size: x-large; color:#FF4F00;">新增地址</text>
+    </view>
+    <van-cell-group style="margin: 100rpx;">
+      <van-field
+        model:value="{{ name }}"
+        required
+        clearable
+        clickable
+        label="收货人姓名"
+        placeholder="请输入收货人姓名"
+      />
+      <van-field
+        model:value="{{ number }}"
+        type="number"
+        required
+        clearable
+        clickable
+        label="收货人电话"
+        placeholder="请输入电话号码"
+      />
+      <!-- 地区选择 -->
+      <van-field
+      value="{{ fieldValue }}"
+      is-link
+      readonly
+      required
+      clickable
+      label="收货人地区"
+      placeholder="请选择所在地区"
+      bind:tap="onClick"
+    />
+    <van-popup show="{{ show }}" round position="bottom">
+      <van-cascader
+        wx:if="{{ show }}"
+        value="{{ cascaderValue }}"
+        title="请选择所在地区"
+        options="{{ options }}"
+        bind:close="onClose"
+        bind:finish="onFinish"
+      />
+    </van-popup>
+
+    <van-field
+        model:value="{{ address }}"
+        required
+        clearable
+        clickable
+        label="详细地址"
+        placeholder="请输入具体地址"
+        clickable
+      />
+    </van-cell-group>
+    <view style="text-align: center;">
+      <van-button size="large" type="info" round bindtap="Submit">立即添加</van-button>
+      <van-toast id="van-toast" mask type="success"/>
+    </view>
+  </van-tab>
+</van-tabs>

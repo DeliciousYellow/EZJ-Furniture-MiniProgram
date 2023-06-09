@@ -19,15 +19,15 @@ Page({
   },
 
   onChange(event) {
-    // console.log(this.data.arrTag[event.detail-1].tagDetail)
+    // console.log(this.data.arrTag[event.detail-1].tagName)
     // console.log("标签转换,当前标签为"+event.detail)
     this.setData({activeKey:event.detail})
     if (event.detail === 0) {
       wx.setStorageSync('IsAll', 0);
     }else{
       wx.setStorageSync('IsAll', -1);
-      // console.log(this.data.arrTag[event.detail-1].tagDetail)
-      wx.setStorageSync('TagName', this.data.arrTag[event.detail-1].tagDetail);
+      // console.log(this.data.arrTag[event.detail-1].tagName)
+      wx.setStorageSync('TagName', this.data.arrTag[event.detail-1].tagName);
     }
     // console.log(this.data.activeKey)
     if (event.detail==0) {
@@ -43,9 +43,9 @@ Page({
     } else {
       // console.log("其他")
       // console.log(event.detail)
-      // console.log(this.data.arrTag[event.detail].tagDetail)
+      // console.log(this.data.arrTag[event.detail].tagName)
       wx.request({
-        url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[event.detail-1].tagDetail,
+        url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[event.detail-1].tagName,
         method:"GET",
         success: res=>{
           this.setData({arrData:res.data.data})
@@ -99,14 +99,14 @@ Page({
           const value = wx.getStorageSync('TagName')
           // console.log(value)
           for (var i = 0; i < this.data.arrTag.length; i++) {
-            if(this.data.arrTag[i].tagDetail===value){
+            if(this.data.arrTag[i].tagName===value){
               break;
             }
           }
           // console.log(i)
           this.setData({activeKey:i+1})
           wx.request({
-            url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[i].tagDetail,
+            url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[i].tagName,
             method:"GET",
             success: res=>{
               this.setData({arrData:res.data.data})

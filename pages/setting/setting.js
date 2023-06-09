@@ -11,7 +11,7 @@ Page({
     password:"",
     nickName:"点击登录",
 
-    headPortrait:"https://img.yzcdn.cn/vant/cat.jpeg",
+    headPortrait:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     show: false
   },
   
@@ -50,6 +50,10 @@ Page({
       },
       success: res =>{
         console.log(res)
+        const token = res.data.data.token;
+        const userId = Number.parseInt(res.data.data.userId)
+        wx.setStorageSync('X-Token', token);
+        wx.setStorageSync('userId', userId);
       }
     })
   },

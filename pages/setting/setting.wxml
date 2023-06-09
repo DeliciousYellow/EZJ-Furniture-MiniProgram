@@ -9,7 +9,7 @@
         custom-style="height: 40%;" closeable round>
         <van-row>
           <van-col span="24" style="display: flex; margin: 1em 1.5em 0em 1.5em;">
-          <van-image round width="3rem" height="3rem" src="https://img.yzcdn.cn/vant/cat.jpeg"  fit="cover"/>
+          <van-image round width="3rem" height="3rem" src="{{headPortrait}}"  fit="cover"/>
           </van-col>
           <van-col offset="2" span="22"><text>欢迎来到易卖商城购物</text></van-col>
           <van-col offset="2" span="22">
@@ -78,7 +78,40 @@
         <text>{{number}}</text>
       </van-col>
   </van-cell-group>
-  <van-cell title="我的订单" is-link value="更多" link-type="navigateTo" url="/pages/order/order"/>
+  <van-cell title="我的订单" is-link value="全部" link-type="navigateTo" url="/pages/order/order?index=0"/>
+  <van-grid clickable column-num="5">
+    <van-grid-item
+      icon="credit-pay"
+      link-type="navigateTo"
+      url="/pages/order/order?index=1"
+      text="代付款"
+    />
+    <van-grid-item
+      icon="send-gift-o"
+      link-type="navigateTo"
+      url="/pages/order/order?index=2"
+      text="代发货"
+    />
+    <van-grid-item
+      icon="logistics"
+      link-type="navigateTo"
+      url="/pages/order/order?index=3"
+      text="待收货"
+    />
+    <van-grid-item
+      icon="chat-o"
+      link-type="navigateTo"
+      url="/pages/order/order?index=4"
+      text="待评价"
+    />
+    <van-grid-item
+      icon="cash-back-record"
+      link-type="navigateTo"
+      url="退款界面"
+      text="退款/售后"
+    />
+    
+  </van-grid>
   <van-cell title="个人信息" is-link />
   <van-cell title="帮助中心" is-link />
   <van-cell title="系统设置" is-link />
