@@ -18,17 +18,14 @@
         tag="标签" 
         price="{{Data.furniturePrice}}"
         origin-price="{{Data.originPrice}}"
-        desc="{{Data.detailedInformation}}"
-        title="{{Data.furnitureName}}" 
+        title="{{Data.furnitureName}}"
         thumb="{{Data.furnitureUrl}}"
         bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
         >
         <view slot="footer">
-          <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
+          <van-button round size="small" catchtap="AddCart"
+          icon="plus" color="#7232dd">
             加入购物车
-            </van-button>
-            <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
-            立即购买
             </van-button>
         </view>
         </van-card>

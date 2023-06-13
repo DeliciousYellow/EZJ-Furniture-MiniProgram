@@ -12,6 +12,7 @@
   "dependencies": {
     "@vant/area-data": "^1.4.1",
     "@vant/weapp": "^1.10.14",
-    "area-data": "^3.1.2"
+    "area-data": "^3.1.2",
+    "crypto-js": "^4.1.1"
   }
 }

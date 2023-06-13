@@ -1,4 +1,5 @@
 // pages/setting/setting.js
+import config from '../../config.js';
 Page({
 
   /**
@@ -10,7 +11,6 @@ Page({
     number:"xxx-xxxx-xxxx",
     password:"",
     nickName:"点击登录",
-
     headPortrait:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     show: false
   },
@@ -38,7 +38,7 @@ Page({
     // console.log("nickName=",nickName)
     // console.log("avatarUrl=",avatarUrl)
     wx.request({
-      url: 'http://127.0.0.1:8080/Register',
+      url: `${config.baseURL}/Register`,
       method: "POST",
       data: {
         code : code,
@@ -50,10 +50,13 @@ Page({
       },
       success: res =>{
         console.log(res)
-        const token = res.data.data.token;
+        const token = res.data.data.token
+        const digestSecret = res.data.data.digestSecret
         const userId = Number.parseInt(res.data.data.userId)
-        wx.setStorageSync('X-Token', token);
-        wx.setStorageSync('userId', userId);
+        
+        wx.setStorageSync('X-Token', token)
+        wx.setStorageSync('DigestSecret', digestSecret)
+        wx.setStorageSync('userId', userId)
       }
     })
   },

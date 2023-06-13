@@ -22,9 +22,8 @@
   <van-divider/>
   <view class="cell-box" id="big-box">
     <van-cell icon="logistics" center 
-    title="同城发货" value="填写收货地址" label="配送至:" 
-    is-link link-type="navigateTo"
-    url="/pages/address/address"/>
+    title="同城发货" value="选择收货地址" label="配送至:{{addressRegion}}" 
+    is-link bindtap="GoAddress"/>
     <van-cell icon="like-o" title="服务" is-link value="7天无理由退换..." bind:click="showPopup"/>
     <van-popup
       closeable

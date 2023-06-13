@@ -32,25 +32,18 @@
 <van-divider contentPosition="center" textColor="#FF4F00" borderColor="#FF4F00" fontSize="22">
 <van-icon style="padding: 0.2em;" name="/icon/clock.png"/>
 <text>限时秒杀!!!还剩</text>
-</van-divider>
 <van-count-down style="color:#51ff00 !important" 
 time="{{time}}" format="HH:mm:ss"/>
-
+</van-divider>
 
 <view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
   <van-card
   num="{{Data.furnitureQuantity}}"
   price="{{Data.furniturePrice}}"
   origin-price="{{Data.originPrice}}"
-  desc="{{Data.detailedInformation}}"   
   title="{{Data.furnitureName}}" 
   thumb="{{Data.furnitureUrl}}"
   bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
   >
-  <view slot="footer">
-      <van-button round size="mini" color="linear-gradient(to right, #f12711, #f5af19)">
-      立即购买
-      </van-button>
-  </view>
   </van-card>
 </view>

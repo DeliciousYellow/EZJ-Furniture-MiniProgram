@@ -1,5 +1,7 @@
 // pages/address/address.js
 import { useCascaderAreaData  } from '../../miniprogram_npm/@vant/weapp/area-data/dist/data';
+import config from '../../config.js';
+import { SHA256 } from 'crypto-js'
 
 Page({
   /**
@@ -10,31 +12,17 @@ Page({
       {
         userId : 1,
         consigneeName:"张三",
-        consigneeNumber:"17700022333",
-        address : "重庆市。。",
+        consigneeNumber:"00000000000",
+        address : "北京市···",
         checked : true
       },
-      {
-        userId : 2,
-        consigneeName:"李四",
-        consigneeNumber:"17700022333",
-        address : "重庆市。。",
-        checked : false
-      },
-      {
-        userId : 3,
-        consigneeName:"王五",
-        consigneeNumber:"17700022333",
-        address : "重庆市。。",
-        checked : false
-      }
     ],
     checkedAddress:{
       userId : 1,
       consigneeName:"张三",
-      consigneeNumber:"17700022333",
-      address : "重庆市。。",
-      checked : null
+      consigneeNumber:"00000000000",
+      address : "北京市···",
+      checked : true
     },
     show: false,
     options:null,
@@ -48,10 +36,10 @@ Page({
   },
 
   Submit(){
-    console.log(this.data.fieldValue)
-    console.log(this.data.name)
-    console.log(this.data.number)
-    console.log(`${this.data.fieldValue}/${this.data.address}`)
+    // console.log(this.data.fieldValue)
+    // console.log(this.data.name)
+    // console.log(this.data.number)
+    // console.log(`${this.data.fieldValue}/${this.data.address}`)
     const textRule = /^.{2,}$/;
     if (!textRule.test(this.data.name)) {
       wx.showToast({
@@ -93,24 +81,31 @@ Page({
       return;
     }
     
-    console.log("发送")
+    // console.log("发送")
     const token = wx.getStorageSync('X-Token')
+    const digestSecret = wx.getStorageSync('DigestSecret')
     const userId = wx.getStorageSync('userId')
-    console.log(token)
-    console.log(userId)
+
+    // console.log(token)
+    // console.log(userId)
+    const address = JSON.stringify({
+      userId:userId,
+      consigneeName:this.data.name,
+      consigneeNumber:this.data.number,
+      addressRegion:this.data.fieldValue,
+      addressDetail:`/${this.data.address}`
+    })
+    console.log(address+digestSecret)
+    console.log(`生成的摘要：${SHA256(address+digestSecret).toString()}`)
     wx.request({
-      url: 'http://127.0.0.1:8080/AddAddress/',
+      url: `${config.baseURL}/AddAddress/`,
       method:'POST',
       header:{
-        'X-Token':token
+        'X-Token':token,
+        'X-Digest':SHA256(address+digestSecret).toString().toUpperCase()
       },
       timeout: 5000,
-      data:{
-        userId:userId,
-        consigneeName:this.data.name,
-        consigneeNumber:this.data.number,
-        addressDetail:`${this.data.fieldValue}/${this.data.address}`
-      },
+      data:address,
       success : (res) =>{
         wx.showToast({
           title: '添加成功',
@@ -120,7 +115,6 @@ Page({
         })
       }
     })
-    
   },
 
   radioClick(event) {
@@ -145,9 +139,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const userId = wx.getStorageSync('userId')
+    const userId = wx.getStorageSync('userId');
     wx.request({
-      url: `http://127.0.0.1:8080/GetAddressByUserId/${userId}`,
+      url: `${config.baseURL}/GetAddressByUserId/${userId}`,
       method:'GET',
       success: (res) => {
         console.log(res)
@@ -157,15 +151,16 @@ Page({
             userId : index+1,
             consigneeName: item.consigneeName,
             consigneeNumber: item.consigneeNumber,
-            address : item.addressDetail,
+            address : item.addressRegion+item.addressDetail,
             checked : false
           })
-          this.setData({
-            arrAddress:arrAddress,
-            checkedAddress:arrAddress[0]
-          })
-          
         })
+        arrAddress[0].checked = true
+        this.setData({
+          arrAddress:arrAddress,
+          checkedAddress:arrAddress[0]
+        })
+
       }
     })
   },
@@ -196,6 +191,7 @@ Page({
     const fieldValue = selectedOptions
         .map((option) => option.text || option.name)
         .join('/');
+        
     this.setData({
       fieldValue,
       cascaderValue: value,

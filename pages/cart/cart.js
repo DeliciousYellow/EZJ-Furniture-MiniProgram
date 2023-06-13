@@ -1,11 +1,14 @@
 // pages/cart/cart.js
-Page({
+import config from '../../config.js';
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    cartData:[],
+    hasData:false,
+    value:1,
   },
 
   /**
@@ -15,6 +18,15 @@ Page({
     wx.setNavigationBarTitle({
       title: '购物车'
     })
+
+    // wx.request({
+    //   url: `${config.baseURL}/`,
+    // })
+
+  },
+
+  onChange(event) {
+    console.log(event.detail);
   },
 
   GoHome(){

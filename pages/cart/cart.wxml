@@ -1,8 +1,25 @@
-<view style="margin: 200rpx;">
-  <van-empty
-  class="custom-image"
-  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-  description="购物车空空如也~">
-  <van-button round type="danger" class="bottom-button" bindtap="GoHome">去逛逛</van-button>
-  </van-empty>
+<view>
+  <view style="margin: 200rpx;" wx:if="{{!hasData}}">
+    <van-empty
+    class="custom-image"
+    image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+    description="购物车空空如也~">
+    <van-button round type="danger" class="bottom-button" bindtap="GoHome">去逛逛</van-button>
+    </van-empty>
+  </view>
+  <view wx:else>
+  有数据
+  <van-card
+    tag="标签"
+    price="10.00"
+    desc="描述信息"
+    title="商品标题"
+    thumb="{{ imageURL }}"
+  >
+    <view slot="footer">
+      <van-stepper value="{{ 1 }}" bind:change="onChange" />
+    </view>
+  </van-card>  
+  
+  </view>
 </view>

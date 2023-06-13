@@ -1,4 +1,6 @@
 // pages/setting/setting.js
+import config from '../../config.js';
+
 Page({
 
   /**
@@ -8,11 +10,15 @@ Page({
     value:"",
     time:1000*60*60*24*3,
     arrImg:[
-    'http://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE1.jpg',
-    'http://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE2.jpg',
-    'http://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE3.jpg'
+    'https://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE1.jpg',
+    'https://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE2.jpg',
+    'https://delicious-blood.oss-cn-chengdu.aliyuncs.com/%E8%BD%AE%E6%92%AD%E5%9B%BE3.jpg'
     ],
     arrData:[],
+  },
+  //立即购买按钮
+  BuyNow(){
+    console.log("立即购买")
   },
   
   //这是宫格分类跳转到分类页面
@@ -47,7 +53,7 @@ Page({
     })
     // console.log("页面加载完毕")
     wx.request({
-      url: 'http://127.0.0.1:8080/getfurnitureall',
+      url: `${config.baseURL}/getfurnitureall`,
       method: "GET",
       success: res =>{
         // console.log(res)

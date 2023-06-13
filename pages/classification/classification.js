@@ -1,4 +1,5 @@
 // pages/classification/classification.js
+import config from '../../config.js';
 
 Page({
   data: {
@@ -6,6 +7,11 @@ Page({
     value:'',
     arrData:[],
     arrTag:[]
+  },
+  //添加到购物车
+  AddCart(){
+    console.log("加入购物车")
+    
   },
 
   //商品详情页面跳转
@@ -34,7 +40,7 @@ Page({
       //默认第一个标签是全部查询
       // console.log("全部")
       wx.request({
-        url: 'http://127.0.0.1:8080/getfurnitureall',
+        url: `${config.baseURL}/getfurnitureall`,
         method:"GET",
         success: res=>{
           this.setData({arrData:res.data.data})
@@ -45,7 +51,7 @@ Page({
       // console.log(event.detail)
       // console.log(this.data.arrTag[event.detail].tagName)
       wx.request({
-        url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[event.detail-1].tagName,
+        url: `${config.baseURL}/getfurnitureByTag/${this.data.arrTag[event.detail-1].tagName}`,
         method:"GET",
         success: res=>{
           this.setData({arrData:res.data.data})
@@ -61,7 +67,7 @@ Page({
     // console.log("页面加载完毕")
     //请求右侧商品列表
     wx.request({
-      url: 'http://127.0.0.1:8080/getfurnitureall',
+      url: `${config.baseURL}/getfurnitureall`,
       method: "GET",
       success: res =>{
         this.setData({arrData:res.data.data})
@@ -75,7 +81,7 @@ Page({
     // console.log(A)
     if(A===0){
       wx.request({
-        url: 'http://127.0.0.1:8080/gettag/类型',
+        url: `${config.baseURL}/gettag/类型`,
         method: "GET",
         success: res =>{
           // console.log(res.data)
@@ -83,7 +89,7 @@ Page({
         }
       })
       wx.request({
-        url: 'http://127.0.0.1:8080/getfurnitureall',
+        url: `${config.baseURL}/getfurnitureall`,
         method: "GET",
         success: res =>{
           this.setData({arrData:res.data.data,activeKey:0})
@@ -91,7 +97,7 @@ Page({
       })
     }else{
       wx.request({
-        url: 'http://127.0.0.1:8080/gettag/类型',
+        url: `${config.baseURL}/gettag/类型`,
         method: "GET",
         success: res =>{
           // console.log(res.data)
@@ -106,7 +112,7 @@ Page({
           // console.log(i)
           this.setData({activeKey:i+1})
           wx.request({
-            url: 'http://127.0.0.1:8080/getfurnitureByTag/'+this.data.arrTag[i].tagName,
+            url: `${config.baseURL}/getfurnitureByTag/${this.data.arrTag[i].tagName}`,
             method:"GET",
             success: res=>{
               this.setData({arrData:res.data.data})
