@@ -127,6 +127,8 @@ Page({
         this.setData({
           checkedAddress:item
         })
+        //存储缓存
+        wx.setStorageSync('checkedAddress', this.data.checkedAddress)
       }
     })
     this.setData({
@@ -148,6 +150,7 @@ Page({
         const arrAddress = []
         res.data.data.forEach((item,index) => {
           arrAddress.push({
+            addressId: item.addressId,
             userId : index+1,
             consigneeName: item.consigneeName,
             consigneeNumber: item.consigneeNumber,
@@ -160,7 +163,7 @@ Page({
           arrAddress:arrAddress,
           checkedAddress:arrAddress[0]
         })
-
+        wx.setStorageSync('checkedAddress', this.data.checkedAddress)
       }
     })
   },

@@ -6,7 +6,8 @@
     "pages/setting/setting",
     "pages/order/order",
     "pages/detail/detail",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/buy/buy"
   ],
   "window": {
     "backgroundTextStyle": "light",

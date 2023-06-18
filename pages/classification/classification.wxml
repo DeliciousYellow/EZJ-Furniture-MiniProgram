@@ -23,7 +23,7 @@
         bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
         >
         <view slot="footer">
-          <van-button round size="small" catchtap="AddCart"
+          <van-button round size="small" catchtap="AddCart" id="{{Data.furnitureId}}"
           icon="plus" color="#7232dd">
             加入购物车
             </van-button>

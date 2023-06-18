@@ -1,5 +1,5 @@
 <view>
-  <view style="margin: 200rpx;" wx:if="{{!hasData}}">
+  <view style="margin: 200rpx;" wx:if="{{hasData}}">
     <van-empty
     class="custom-image"
     image="https://img.yzcdn.cn/vant/custom-empty-image.png"
@@ -8,18 +8,50 @@
     </van-empty>
   </view>
   <view wx:else>
-  有数据
-  <van-card
-    tag="标签"
-    price="10.00"
-    desc="描述信息"
-    title="商品标题"
-    thumb="{{ imageURL }}"
-  >
-    <view slot="footer">
-      <van-stepper value="{{ 1 }}" bind:change="onChange" />
-    </view>
-  </van-card>  
-  
+      <!-- 搜索栏部分 -->
+      <view class="search-bar"><van-search value="{{ value }}" placeholder="请输入搜索关键词" /></view>
+      <!-- 商品循环部分 -->
+      <view class="content">
+        <view wx:for="{{cartData}}" wx:for-item="Data" wx:for-index="id" wx:key="cartId">
+          <van-row>
+            <van-col span="2">
+              <van-checkbox value="{{Data.checked}}">
+              </van-checkbox>
+            </van-col>
+            <van-col span="22">
+              <van-card bindtap="tapCheck" id="{{id}}"
+              price="{{Data.Furniture.furniturePrice}}"
+              title="{{Data.Furniture.furnitureName}}"
+              thumb="{{Data.Furniture.furnitureUrl}}"
+              >
+                <view slot="footer">
+                  <van-stepper value="{{Data.Cart.cartCount}}" id="{{id}}"
+                  bind:change="onChange" bind:focus="getFocus" 
+                  integer max="10000"/>
+                </view>
+              </van-card>
+            </van-col>
+          </van-row>
+        </view>
+      </view>
+      <!-- 提交订单部分 -->
+      <view class="submit-bar">
+        <van-submit-bar bar-class="bar"
+          price="{{ sum }}"
+          button-text="结算"
+          bind:submit="onClickButton"
+          tip="{{ false }}"
+        >
+        <view slot="">
+          <van-button type="info" size="small" bindtap="remove">删除</van-button>
+          <van-checkbox value="{{allCheck}}" bind:change="allChange">
+          全选
+          </van-checkbox>
+        </view>
+        <!-- <view slot="tip">
+        您的收货地址不支持同城送, <text>修改地址</text>
+        </view> -->
+        </van-submit-bar>
+      </view>
   </view>
 </view>

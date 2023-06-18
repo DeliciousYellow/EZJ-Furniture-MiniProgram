@@ -45,7 +45,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
+  "libVersion": "2.30.2",
   "appid": "wx6b59eadb36a3cf7e",
   "projectname": "miniprogram-92",
   "condition": {},

@@ -1,0 +1,44 @@
+<!--pages/buy/buy.wxml-->
+<view>
+  <!-- 搜索栏部分 -->
+  <view class="search-bar">
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+  </view>
+  <!-- 商品循环部分 -->
+  <view class="content">
+    <view wx:for="{{ order }}" wx:for-item="Data" wx:for-index="id" wx:key="cartId">
+      <van-card id="{{id}}"
+        price="{{Data.Furniture.furniturePrice}}"
+        title="{{Data.Furniture.furnitureName}}"
+        thumb="{{Data.Furniture.furnitureUrl}}"
+        num="{{Data.Cart.cartCount}}">
+      </van-card>
+    </view>
+  </view>
+  <!-- 地址选择 -->
+  <view class="checkAddress">
+    <van-divider/>
+    <van-cell-group>
+    <van-cell icon="location-o" center size="large"
+    title="收货人：{{checkedAddress.consigneeName}}" value="选择收货地址" label="配送至:{{checkedAddress.address}}" 
+    is-link bindtap="GoAddress"/>
+    <van-field size="large"
+      label="备注"
+      value="{{orderComment}}"
+      placeholder="如需备注请输入"
+      bind:change="onChange"
+    />
+    </van-cell-group>
+  </view>
+  <!-- 价格总览，运费 -->
+  <!-- 提交订单部分 -->
+  <view class="submit-bar">
+    <van-submit-bar bar-class="bar"
+      price="{{ sum }}"
+      button-text="提交订单"
+      bind:submit="onClickButton"
+      tip="{{ false }}"
+    >
+    </van-submit-bar>
+  </view>
+</view>

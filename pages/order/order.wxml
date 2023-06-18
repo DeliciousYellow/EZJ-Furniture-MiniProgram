@@ -1,6 +1,24 @@
 <view class="search-bar"><van-search value="{{ value }}" placeholder="请输入搜索关键词" /></view>
 <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title=" 全部 ">内容 1</van-tab>
+  <van-tab title=" 全部 ">
+    <van-cell-group inset>
+      <view wx:for="{{ orderArr }}" wx:for-item="item" wx:for-index="index" >
+        <van-panel title="{{item.creatTime}}" desc="订单编号{{item.orderCode}}"
+        status="{{item.orderState}}">
+          <view slot="" style="width: 100%;">
+            <view wx:for="{{ item.orderlist }}" wx:for-item="Data" wx:for-index="id" wx:key="cartId">
+              <van-card style="width: 100%;"
+                price="{{Data.furniture.furniturePrice}}"
+                title="{{Data.furniture.furnitureName}}"
+                thumb="{{Data.furniture.furnitureUrl}}"
+                num="{{Data.orderCount}}">
+              </van-card>
+            </view>
+          </view>
+        </van-panel>
+      </view>
+    </van-cell-group>
+  </van-tab>
   <van-tab title="待付款">内容 2</van-tab>
   <van-tab title="代发货">内容 3</van-tab>
   <van-tab title="待收货">内容 4</van-tab>

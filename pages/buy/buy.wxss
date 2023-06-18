@@ -1,4 +1,4 @@
-/* pages/cart/cart.wxss */
+/* pages/buy/buy.wxss */
 .search-bar {
   position: fixed;
   top: 0;
@@ -8,13 +8,20 @@
 .content {
   position: fixed;
   overflow: auto;
-  margin-top: 100rpx;
-  height: 80%;
+  margin-top: 120rpx;
+  height: 45%;
   width: 100%;
 }
 .submit-bar {
   position: fixed;
   bottom: 0;
   height: 10rpx;
+  z-index: 999;
+}
+
+.checkAddress{
+  position: fixed;
+  margin-top: 100%;
+  width: 100%;
   z-index: 999;
 }

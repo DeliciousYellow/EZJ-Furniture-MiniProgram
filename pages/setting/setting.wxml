@@ -78,30 +78,27 @@
         <text>{{number}}</text>
       </van-col>
   </van-cell-group>
-  <van-cell title="我的订单" is-link value="全部" link-type="navigateTo" url="/pages/order/order?index=0"/>
+  <van-cell title="我的订单" is-link value="全部" link-type="navigateTo" size="large"
+  bindtap="GoOrder" id="0"/>
   <van-grid clickable column-num="5">
-    <van-grid-item
+    <van-grid-item id="1"
       icon="credit-pay"
-      link-type="navigateTo"
-      url="/pages/order/order?index=1"
+      bindtap="GoOrder"
       text="代付款"
     />
-    <van-grid-item
+    <van-grid-item id="2"
       icon="send-gift-o"
-      link-type="navigateTo"
-      url="/pages/order/order?index=2"
+      bindtap="GoOrder"
       text="代发货"
     />
-    <van-grid-item
+    <van-grid-item id="3"
       icon="logistics"
-      link-type="navigateTo"
-      url="/pages/order/order?index=3"
+      bindtap="GoOrder"
       text="待收货"
     />
-    <van-grid-item
+    <van-grid-item id="4"
       icon="chat-o"
-      link-type="navigateTo"
-      url="/pages/order/order?index=4"
+      bindtap="GoOrder"
       text="待评价"
     />
     <van-grid-item
@@ -112,7 +109,7 @@
     />
     
   </van-grid>
-  <van-cell title="个人信息" is-link />
-  <van-cell title="帮助中心" is-link />
-  <van-cell title="系统设置" is-link />
+  <van-cell title="个人信息" is-link size="large"/>
+  <van-cell title="帮助中心" is-link size="large"/>
+  <van-cell title="系统设置" is-link size="large"/>
 </van-row>

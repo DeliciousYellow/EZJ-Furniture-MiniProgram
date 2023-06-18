@@ -73,5 +73,25 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的信息'
     })
+  },
+
+  GoOrder(e){
+    const userId = wx.getStorageSync('userId');
+    if(userId == null || userId == ''){
+      wx.switchTab({
+        url: '/pages/setting/setting',
+      })
+      wx.showToast({
+        title: '请先进行登录',
+        icon: 'none', // 提示图标，可选值：'success'、'loading'、'none'
+        duration: 2000, // 提示显示时间，单位为毫秒，默认为1500
+        mask: false, // 是否显示透明蒙层，防止触摸穿透，默认为false
+      })
+      return;
+    }
+    const index = e.currentTarget.id
+    wx.navigateTo({
+      url: `/pages/order/order?index=${index}`,
+    })
   }
 })

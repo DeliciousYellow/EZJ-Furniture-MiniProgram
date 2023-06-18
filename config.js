@@ -1,5 +1,5 @@
-const baseURL = 'https://10.150.225.11:8443'; // 后端服务的基础地址
+const baseURL = 'http://192.168.43.34:8080'; // 后端服务的基础地址
 
-export default {  
+export default {
   baseURL
 }

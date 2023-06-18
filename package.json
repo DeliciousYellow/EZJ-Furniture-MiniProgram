@@ -13,6 +13,8 @@
     "@vant/area-data": "^1.4.1",
     "@vant/weapp": "^1.10.14",
     "area-data": "^3.1.2",
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "moment": "^2.29.4",
+    "wx-promise-pro": "^3.2.4"
   }
 }

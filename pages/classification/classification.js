@@ -1,5 +1,6 @@
 // pages/classification/classification.js
-import config from '../../config.js';
+import config from '../../config.js'
+import { SHA256 } from 'crypto-js'
 
 Page({
   data: {
@@ -7,11 +8,6 @@ Page({
     value:'',
     arrData:[],
     arrTag:[]
-  },
-  //添加到购物车
-  AddCart(){
-    console.log("加入购物车")
-    
   },
 
   //商品详情页面跳转
@@ -121,6 +117,62 @@ Page({
         }
       })
     }
-  }
+  },
+
+  //添加到购物车
+  AddCart(e){
+    console.log(e)
+    console.log(this.data)
+    const userId = wx.getStorageSync('userId');
+    if(userId == null || userId == ''){
+      wx.switchTab({
+        url: '/pages/setting/setting',
+      })
+      wx.showToast({
+        title: '请先进行登录',
+        icon: 'none', // 提示图标，可选值：'success'、'loading'、'none'
+        duration: 2000, // 提示显示时间，单位为毫秒，默认为1500
+        mask: false, // 是否显示透明蒙层，防止触摸穿透，默认为false
+      })
+      return;
+    }
+    const furnitureId = Number.parseInt(e.currentTarget.id)
+    const requestData = JSON.stringify({
+      userId:Number.parseInt(userId),
+      cartFurnitureId:furnitureId,
+      cartCount:1
+    })
+    console.log(requestData)
+    const token = wx.getStorageSync('X-Token')
+    const digestSecret = wx.getStorageSync('DigestSecret')
+    wx.request({
+      url: `${config.baseURL}/AddCart`,
+      method:"POST",
+      header:{
+        'X-Token':token,
+        'X-Digest':SHA256(requestData+digestSecret).toString().toUpperCase()
+      },
+      data:requestData,
+      success:(res) => {
+        console.log(res)
+
+      }
+    })
+    wx.showToast({
+      title: '加入购物车成功',
+      icon: 'success', // 提示图标，可选值：'success'、'loading'、'none'
+      duration: 2000, // 提示显示时间，单位为毫秒，默认为1500
+      mask: false, // 是否显示透明蒙层，防止触摸穿透，默认为false
+    })
+    if (this.data.infoNumber === null) {
+      this.setData({
+        infoNumber:1
+      })
+    }else{
+      this.setData({
+        infoNumber:this.data.infoNumber+1
+      })
+    }
+  },
 
 })
