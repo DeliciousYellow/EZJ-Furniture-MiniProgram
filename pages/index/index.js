@@ -21,6 +21,11 @@ Page({
     console.log("立即购买")
   },
   
+  // getRandomHeight() {
+  //   // 生成一个介于200到400之间的随机数作为高度
+  //   return Math.floor(Math.random() * (400 - 200 + 1) + 200) + 'px';
+  // },
+
   //这是宫格分类跳转到分类页面
   bindTag(e){
     // console.log("触发")

@@ -8,7 +8,7 @@ Page({
    */
   data: {
     cartData:[],
-    hasData:true,
+    unHasData:true,
     value:null,
     flag:false,//用于标记阻止事件冒泡，组件方法是bind：click，导致我不能用catchtap
     money:0,//实际价格
@@ -19,7 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onShow(options) {
     wx.setNavigationBarTitle({
       title: '购物车'
     })
@@ -37,11 +37,13 @@ Page({
           res.data.data.forEach((item) => {
             item.checked = false;
           })
-          this.setData({
-            cartData:res.data.data,
-            hasData:false
-          })
         }
+        console.log("长度")
+        console.log(res.data.data.length)
+        this.setData({
+          cartData:res.data.data,
+          unHasData: res.data.data.length==0 ? true : false 
+        })
       }
     })
   },
@@ -151,7 +153,10 @@ Page({
       .then(() => {
         console.log("所有请求已完成");
         // 执行接下来的逻辑
-        this.onLoad()
+        // this.setData({
+        //   unHasData : true
+        // })
+        this.onShow()
       })
       .catch(error => {
         console.error("请求失败：", error);

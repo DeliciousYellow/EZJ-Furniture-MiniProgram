@@ -4,6 +4,7 @@ const wxp = require('wx-promise-pro').default;
 
 Page({
   data: {
+    unHasData: true,
     active: 0,
     value: '',
     order:[
@@ -43,30 +44,6 @@ Page({
       },
     ],
     orderArr:[],
-    SSS:[
-      {
-        AAA:"张三",
-        BBB:[
-          {
-            CCC:"张三的家",
-          },
-          {
-            DDD:"张三的电话",
-          }
-        ]
-      },
-      {
-        AAA:"李四",
-        BBB:[
-          {
-            CCC:"李四的家",
-          },
-          {
-            DDD:"李四的电话",
-          }
-        ]
-      }
-    ]
   },
 
   onLoad(options) {
@@ -74,9 +51,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的订单'
     })
-    this.setData({
-      active:index
-    });
     const userId = Number.parseInt(wx.getStorageSync('userId'))
     console.log(userId)
     wx.request({
@@ -190,7 +164,16 @@ Page({
             this.setData({
               orderArr:orderArr
             })
-            console.log(this.data.orderArr)
+            console.log(options)
+            if (this.data.orderArr.length != 0  && options.index == "0") {
+              this.setData({
+                unHasData: false
+              })
+            }
+            //切换页面
+            this.setData({
+              active:index
+            });
           })
       }
     })
@@ -200,9 +183,29 @@ Page({
     wx.showToast({
       title: `切换到标签 ${e.detail.name}`,
       icon: 'none',
-    });
-    //在这个事件中更改渲染的订单
+    })
     console.log(e)
+    //如果选择的标签是全部，就是orderArr数组中是否有数据
+    //注：这里全部的前后空格一定要保留
+    if (e.detail.title==" 全部 " && this.data.orderArr.length != 0) {
+      this.setData({
+        unHasData: false
+      })
+      return
+    }
+    //在这个事件中更改渲染的订单
+    console.log(e.detail.title)
+    let flag = true
+    this.data.orderArr.forEach((item) => {
+      console.log(item)
+      if (item.orderState == e.detail.title) {
+        console.log("AAAAA")
+        flag = false
+      }
+    })
+    this.setData({
+      unHasData: flag
+    })
   },
 
 })

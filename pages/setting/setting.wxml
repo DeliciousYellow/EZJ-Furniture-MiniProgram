@@ -1,7 +1,7 @@
 <van-row>
   <van-cell-group class="text" inset>
     <van-col span="4">
-      <van-image round fit="cover" width="5rem" height="5rem" src="{{headPortrait}}"/>
+      <van-image round fit="cover" width="5rem" height="5rem" src="{{avatarUrl}}"/>
     </van-col>
       <van-col span="10" offset="8" style="font-size: 1.2rem;font-weight: bold;">
         <text is-link bindtap="showPopup">{{nickName}}</text>

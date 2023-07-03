@@ -1,1 +1,6 @@
 /* pages/address/address.wxss */
+
+.scroll-view {
+  height: calc(100vh - 520rpx); /* 设置固定高度，根据需要调整 */
+  overflow: auto; /* 显示滚动条 */
+}

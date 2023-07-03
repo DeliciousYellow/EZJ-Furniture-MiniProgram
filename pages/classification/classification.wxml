@@ -15,7 +15,7 @@
   <view class="right">
     <view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
         <van-card num="{{Data.furnitureQuantity}}"
-        tag="标签" 
+        tag="" 
         price="{{Data.furniturePrice}}"
         origin-price="{{Data.originPrice}}"
         title="{{Data.furnitureName}}"

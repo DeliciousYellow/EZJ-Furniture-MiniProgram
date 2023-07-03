@@ -8,6 +8,43 @@
   color:#FF4F00;
 }
 
+.grid-item {
+  background-color: #f5f5f5;
+  margin: -20rpx;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.item-name {
+  margin-left: 10rpx;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+.item-fuhao {
+  margin-left: 10rpx;
+  font-size: 13px;
+  color: #FF4F00;
+}
+
+.item-price {
+  font-size: 18px;
+  color: #FF4F00;
+}
+
+.item-sales {
+  margin-left: 10rpx;
+  font-size: 11px;
+  color: #666666;
+}
 
 /* 调整文字位置 */
 .van-search {

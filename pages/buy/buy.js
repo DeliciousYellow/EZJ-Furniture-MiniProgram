@@ -90,7 +90,7 @@ Page({
       const requestData = JSON.stringify({
         orderCode: uuid,
         creatTime: formattedTime,
-        orderState: "代发货",
+        orderState: "待发货",
         userId: userId,
         furnitureId: item.Furniture.furnitureId,
         addressId: this.data.checkedAddress.addressId,

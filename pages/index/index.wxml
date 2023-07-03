@@ -1,3 +1,4 @@
+<view class="page-container">
 <van-row>
   <van-col span="6">易筑家</van-col>
   <van-col span="18">
@@ -16,8 +17,9 @@
   </view>
 </swiper>
 
-<van-grid column-num="5">
-  <van-grid-item icon="/icon/sofa.png" text="沙发" bind:click="bindTag" data-name="沙发"/>
+<view style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); margin: 15rpx;">
+  <van-grid column-num="5">
+  <van-grid-item icon="/icon/sofa.png" text="沙发" bind:click="bindTag" data-name="沙发" />
   <van-grid-item icon="/icon/bed.png" text="床" bind:click="bindTag" data-name="床"/>
   <van-grid-item icon="/icon/nightTable.png" text="床头柜" bind:click="bindTag" data-name="床头柜"/>
   <van-grid-item icon="/icon/coatHanger.png" text="衣架" bind:click="bindTag" data-name="衣架"/>
@@ -28,6 +30,7 @@
   <van-grid-item icon="/icon/bathtub.png" text="浴缸" bind:click="bindTag" data-name="浴缸"/>
   <van-grid-item icon="/icon/closestool.png" text="马桶" bind:click="bindTag" data-name="马桶"/>
 </van-grid>
+</view>
 
 <van-divider contentPosition="center" textColor="#FF4F00" borderColor="#FF4F00" fontSize="22">
 <van-icon style="padding: 0.2em;" name="/icon/clock.png"/>
@@ -35,8 +38,20 @@
 <van-count-down style="color:#51ff00 !important" 
 time="{{time}}" format="HH:mm:ss"/>
 </van-divider>
-
-<view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
+<van-grid column-num="2" border="{{ false }}" gutter="10">
+  <van-grid-item use-slot wx:for="{{ arrData }}" wx:for-item="Data" >
+    <view class="grid-item" bindtap="Jump" data-furnitureId="{{Data.furnitureId}}">
+      <van-image width="170" height="160" src="{{Data.furnitureUrl}}" />
+      <view class="item-content">
+        <view class="item-name">{{ Data.furnitureName }}</view>
+        <text class="item-fuhao">￥</text>
+        <text class="item-price">{{ Data.furniturePrice }}</text>
+        <text class="item-sales">{{ Data.salesVolume }}人付款</text>
+      </view>
+    </view>
+  </van-grid-item>
+</van-grid>
+<!-- <view wx:for="{{arrData}}" wx:for-item="Data" wx:key="furnitureId">
   <van-card
   num="{{Data.furnitureQuantity}}"
   price="{{Data.furniturePrice}}"
@@ -46,4 +61,5 @@ time="{{time}}" format="HH:mm:ss"/>
   bindtap="Jump" data-furnitureId="{{Data.furnitureId}}"
   >
   </van-card>
+</view> -->
 </view>

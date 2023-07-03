@@ -13,6 +13,8 @@
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-submit-bar": "@vant/weapp/submit-bar/index",
     "van-field": "@vant/weapp/field/index",
-    "van-panel": "@vant/weapp/panel/index"
+    "van-panel": "@vant/weapp/panel/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-divider": "@vant/weapp/divider/index"
   }
 }

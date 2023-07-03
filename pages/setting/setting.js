@@ -12,6 +12,7 @@ Page({
     password:"",
     nickName:"点击登录",
     headPortrait:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    avatarUrl:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     show: false
   },
   
@@ -62,6 +63,13 @@ Page({
   },
 
   showPopup() {
+    // console.log("点击登录")
+    const userId = wx.getStorageSync('userId');
+    // console.log(userId)
+    //如果已经登录就不再显示
+    if(userId !== null && userId !== ''){
+      return
+    }
     this.setData({ show: true });
   },
 
@@ -73,6 +81,21 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的信息'
     })
+    const userId = wx.getStorageSync('userId');
+    // console.log(userId)
+    //如果已经登录就查头像
+    if(userId !== null && userId !== ''){
+      wx.request({
+        url: `${config.baseURL}/GetUserById/${userId}`,
+        method:'GET',
+        success: (res) => {
+          console.log(res)
+          this.setData({
+            avatarUrl:res.data.data.avatarUrl
+          })
+        }
+      })
+    }
   },
 
   GoOrder(e){

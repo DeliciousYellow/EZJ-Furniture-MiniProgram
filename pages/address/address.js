@@ -203,4 +203,42 @@ Page({
     console.log(this.data.fieldValue)
     
   },
+
+  remove() {
+    console.log(this.data.checkedAddress)
+    wx.showModal({
+      title: '确认删除',
+      content: '确定要删除该地址吗？',
+      success: (res) => {
+        if (res.confirm) {
+          // 用户点击了确定按钮
+          console.log('用户点击了确定');
+          // 在这里添加删除操作的代码
+          const token = wx.getStorageSync('X-Token')
+          wx.request({
+            url: `${config.baseURL}/DeleteAddress/`,
+            method:'DELETE',
+            header:{
+              'X-Token':token,
+            },
+            timeout: 5000,
+            data:this.data.checkedAddress,
+            success : (res) =>{
+              console.log(res)
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success', // 提示图标，可选值：'success'、'loading'、'none'
+                duration: 2000, // 提示显示时间，单位为毫秒，默认为1500
+                mask: false, // 是否显示透明蒙层，防止触摸穿透，默认为false
+              })
+              this.onLoad()
+            }
+          })
+        } else if (res.cancel) {
+          // 用户点击了取消按钮
+          console.log('用户点击了取消');
+        }
+      }
+    })
+  }
 })

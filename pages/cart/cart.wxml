@@ -1,5 +1,5 @@
 <view>
-  <view style="margin: 200rpx;" wx:if="{{hasData}}">
+  <view style="margin: 200rpx;" wx:if="{{unHasData}}">
     <van-empty
     class="custom-image"
     image="https://img.yzcdn.cn/vant/custom-empty-image.png"

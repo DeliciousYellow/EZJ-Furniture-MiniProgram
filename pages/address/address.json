@@ -9,6 +9,7 @@
     "van-area": "@vant/weapp/area/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-cascader": "@vant/weapp/cascader/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   }
 }

@@ -11,7 +11,7 @@
   <van-divider/>
   <van-row class="detail">
     <van-col span="6" class="price">￥{{furnitureData.furniturePrice}}</van-col>
-    <van-col offset="10" span="8" class="price">月销量:{{furnitureData.furnitureQuantity}}</van-col>
+    <van-col offset="10" span="8" class="price">累计销量:{{furnitureData.salesVolume}}</van-col>
     <van-col span="24" >
       <view class="van-multi-ellipsis--l3">
         <van-tag size="medium" type="danger">易卖</van-tag>
